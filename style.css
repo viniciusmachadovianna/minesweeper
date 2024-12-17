@@ -16,6 +16,10 @@ body{
 header{
     width: 270px;
     background: rgb(0, 85, 0);
+    height: 30px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 }
 select{
     background: rgb(0, 61, 0);
@@ -28,7 +32,22 @@ main{
     flex-flow: row wrap;
 }
 main>div{
-    width: 30px;
-    height:30px;
+    width: 25px;
+    height:25px;
     cursor: pointer;
+}
+.dark{
+    background: rgb(73, 170, 255);
+}
+main>div:hover{
+    background: rgb(176, 218, 255);
+}
+main>div{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+img{
+    width: 20px;
 }

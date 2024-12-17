@@ -1,18 +1,23 @@
 const diff = document.getElementById("difficulty"),
+    flags = document.getElementById("flags"),
     minefield = document.querySelector("main"),
+    menu = document.querySelector("header"),
     field = {
     easy: {squares: 81,flags: 10,},
-    medium: {squares: 256,flags: 40,},
-    hard: {squares: 484,flags: 100,},
+    medium: {squares: 225,flags: 40,},
+    hard: {squares: 441,flags: 100,},
 };
-function createField(size){
+function createField(difficulty){
     minefield.replaceChildren();
+    const size = `${Math.sqrt(field[difficulty].squares)*25}px`;
+    minefield.style.width = size;
+    menu.style.width = size;
     let tiles=[];
     const frag = document.createDocumentFragment();
-    for(i=0;i<field[size].squares; i++) {
+    for(i=0;i<field[difficulty].squares; i++) {
         const tile = document.createElement('div');
         tile.value = i;
-        if (i%2!==0){tile.style.background = "rgb(73, 170, 255)";}
+        if (tile.value%2!==0){tile.className="dark";}
         frag.appendChild(tile);
         tiles.push(tile.value);
     }
@@ -21,10 +26,20 @@ function createField(size){
         const j = Math.floor(Math.random() * (i + 1));
         [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
     }
-    let mines=tiles.slice(0,field[size].flags);
+    let mines=tiles.slice(0,field[difficulty].flags);
     console.log(mines);
-    
-    minefield.addEventListener('mouseover',(e)=>{e.target.style.background="#9fd2ff";})
-    minefield.addEventListener('mouseout',(e)=>{e.target.style.background=e.target.value%2!==0?"#49aaff":"";})
+    flags.textContent = field[difficulty].flags;
+    minefield.addEventListener('click',(e)=>{
+        if(mines.includes(e.target.value)){
+        console.log("contem")}
+    })
 }
+document.addEventListener("contextmenu",(e)=>{
+    if(e.target.tagName!='DIV' && e.target.tagName!='IMG'){return}
+    e.preventDefault();
+    if(e.target.tagName==='IMG'){e.target.remove();return}
+    const flag = document.createElement('img');
+    flag.src = "assets/flag.png";
+    e.target.appendChild(flag);
+})
 createField(diff.value);
