@@ -9,10 +9,10 @@
 </head>
 <body>
     <header>
-        <select name="diff" id="fieldSize">
-            <option value="81">EASY</option>
-            <option value="252">MEDIUM</option>
-            <option value="480">HARD</option>
+        <select id="difficulty" onchange="createField(this.value)">
+            <option value="easy">EASY</option>
+            <option value="medium">MEDIUM</option>
+            <option value="hard">HARD</option>
         </select>
     </header>
     <main>
