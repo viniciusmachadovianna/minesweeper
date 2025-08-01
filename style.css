@@ -1,0 +1,48 @@
+:root{
+  --bg: #EEE;
+  --text: #333;
+  --field: rgb(148, 237, 255);
+}
+[data-theme="dark"] {
+  --bg: #333;
+  --text: #EEE;
+}
+[data-theme="light"] {
+  --bg: #EEE;
+  --text: #333;
+}
+body {
+  font-family: Poppins, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100dvh;
+}
+main{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  margin-top: 20px;
+  background-color: var(--field);
+}
+.mine{
+  flex: 0 0 calc((100% / 3));
+  box-sizing: border-box;
+  width: 50px;
+  height: 50px;
+  border: 1px solid hsl(0, 0%, 74%);
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+.mine.flagged{background-color: #2c2c2c6b;}
+
+.mine:hover {
+  background-color: #e5e5e56b;
+}
