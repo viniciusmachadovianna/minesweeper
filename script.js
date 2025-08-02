@@ -12,7 +12,7 @@ const btnToggleTimelapse = $('toggleTimelapse');
 const btnToggleHUD = $('toggleHUD');
 const btnChangeColor = $('changeColor');
 const btnChangeTheme = $('changeTheme');
-
+const themeSelector = $('themeSelector');
 let gameRunning = false;
 
 function toggleElementVisibility(el=null){
@@ -20,12 +20,13 @@ function toggleElementVisibility(el=null){
 }
 
 function changeTheme() {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  document.documentElement.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
 }
 
 function revealSector(selectedSector) {
-  selectedSector.style.backgroundColor = 'lightgray';
+  if (!gameRunning) {
+    gameRunning = true;
+    startGame();
+  }
   if (selectedSector.classList.contains('revealed') || selectedSector.classList.contains('flagged')) {return}
 
   selectedSector.classList.add('revealed');
@@ -33,9 +34,8 @@ function revealSector(selectedSector) {
 }
 
 function startGame(difficulty='test') {
-  let difficulties = {'test':[3,2],'easy':[9,10],'regular':[16,50],'hard':[25,100],'extreme':[36,200]};
+  let difficulties = {'test':[3,2],'easy':[9,10],'regular':[15,50],'hard':[25,100],'extreme':[35,200]};
   minefield.replaceChildren();
-  console.log('Game started');
   const sectors = difficulties[difficulty][0]**2
   const mines = difficulties[difficulty][1];
   flagsLeft.textContent = `${mines} mines`;
@@ -64,6 +64,14 @@ function flagSector(sector) {
 
 window.onload=()=>{
   minefield.onclick=(e)=>revealSector(e.target)
+  themeSelector.onclick=(e)=>{
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    const selectedTheme = btn.dataset.theme;
+    document.documentElement.setAttribute('data-theme', selectedTheme);
+    themeSelector.querySelector('.active')?.classList.remove('active');
+    btn.classList.add('active');
+  }
   minefield.oncontextmenu=(e)=>{e.preventDefault();flagSector(e.target)}
   btnStartGame.onclick=()=>startGame();
   btnToggleMinesLeft.onclick=()=>toggleElementVisibility('flagsLeft')

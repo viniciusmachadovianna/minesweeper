@@ -1,15 +1,16 @@
 # [EN-US] Minesweeper game
 
-> This project showcases a clean implementation of the classic Minesweeper game using the following techs:
-> Vanilla JavaScript (ES6);
-> HTML5 (Semantic);
-> CSS3 with attr selectors and state styling.
+This project showcases a clean implementation of the classic Minesweeper game using the following techs:
+- Vanilla JavaScript (ES6);
+- HTML5 (Semantic);
+- CSS3 with attr selectors and state styling.
 
 ---
 
 ## Features
 
 - Usage of `[data-*]`  selector, very useful for both CSS styling and JavaScript logic;
+- `:not.()` CSS usage for exceptions;
 - Advanced selectors like `[attr-^]` (starts with...) and `[attr$]` (ends with...) targeting theme flexibilization;
 - Script organization following good practices.
 
