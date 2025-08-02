@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light"> 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +7,21 @@
   <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
   <title>Minesweeper</title>
 </head>
-<body data-theme="dark">
+<body>
   <header>
-    <span id="minesLeft">2 mines</span>
-    <span id="timeLapse">0S</span>
+    <span id="minesLeft"></span>
+    <span id="timelapse">0S</span>
   </header>
-  <main>
-    <div class="mine" id="t1">2</div>
-    <div class="mine" id="t2">⬤</div>
-    <div class="mine" id="t3">2⛿</div>
-    <div class="mine" id="t4">⬤</div>
-    <div class="mine" id="t5">3</div>
-    <div class="mine" id="t6">⬤</div>
-    <div class="mine" id="t7">1</div>
-    <div class="mine" id="t8">2</div>
-    <div class="mine" id="t9">1</div>
+  <main id="minefield">
   </main>
   <footer>
-    <button id="flag">⛿</button>
-    <button id="land"></button>
+    <button id="toggleMinesLeft">mines</button>
+    <button id="toggleTimelapse">time</button>
+    <button id="changeColor">color</button>
+    <button id="changeTheme">theme</button>
   </footer>
+  <button id="start">⬤start⛿</button>
+  <button id="toggleHUD">hud</button>
 </body>
-<!-- <script src="script.js"></script> -->
+<script src="script.js"></script>
 </html>

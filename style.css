@@ -11,6 +11,9 @@
   --bg: #EEE;
   --text: #333;
 }
+.hidden {
+  display: none;
+}
 body {
   font-family: Poppins, sans-serif;
   background-color: var(--bg);
@@ -31,7 +34,7 @@ main{
   margin-top: 20px;
   background-color: var(--field);
 }
-.mine{
+.sector{
   flex: 0 0 calc((100% / 3));
   box-sizing: border-box;
   width: 50px;
@@ -41,8 +44,8 @@ main{
   position: relative;
   cursor: pointer;
 }
-.mine.flagged{background-color: #2c2c2c6b;}
+.sector.flagged{background-color: #2c2c2c6b;}
 
-.mine:hover {
+.sector:hover {
   background-color: #e5e5e56b;
 }
