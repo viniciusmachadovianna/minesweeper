@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light"> 
+<html lang="en" data-theme="dark-purple"> 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,16 +9,21 @@
 </head>
 <body>
   <header>
-    <span id="minesLeft"></span>
+    <span id="flagsLeft"> <img src="assets/flag.svg" alt="Ícone indicador de quantas bandeiras ainda podem ser marcadas, o valor negativo indica uma marcação incorreta"></span>
     <span id="timelapse">0S</span>
   </header>
   <main id="minefield">
   </main>
   <footer>
-    <button id="toggleMinesLeft">mines</button>
-    <button id="toggleTimelapse">time</button>
-    <button id="changeColor">color</button>
-    <button id="changeTheme">theme</button>
+    <button id="toggleMinesLeft">
+      <img src="assets/flag.svg" alt="Botão para esconder/mostrar a quantidade restante de bandeiras a marcar" style="width: 24px;">
+    </button>
+    <button id="toggleTimelapse">
+      <img src="assets/time.svg" alt="Botão para esconder/mostrar o tempo decorrido" style="width: 24px;">
+    </button>
+    <button id="changeTheme">
+      <img src="assets/theme.svg" alt="Botão para mudar as cores da interface, trocando tanto o fundo quanto a cor do campo minado" style="width: 24px;">
+    </button>
   </footer>
   <button id="start">⬤start⛿</button>
   <button id="toggleHUD">hud</button>
