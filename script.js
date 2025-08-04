@@ -16,10 +16,16 @@ const themeSelector = $('themeSelector');
 let gameRunning = false;
 
 function toggleElementVisibility(el=null){
-  !el?$all('header,footer').forEach(el=>el.classList.toggle('hidden')):$(el).classList.toggle('hidden')
+  !el?$all('header,footer').forEach(el=>el.classList.toggle('hidden')):$q(el).classList.toggle('hidden')
 }
 
-function changeTheme() {
+function changeTheme(e) {
+  const btn = e.target.closest('button');
+    if (!btn) return;
+    const selectedTheme = btn.dataset.theme;
+    document.documentElement.setAttribute('data-theme', selectedTheme);
+    themeSelector.querySelector('.active')?.classList.remove('active');
+    btn.classList.add('active');
 }
 
 function revealSector(selectedSector) {
@@ -34,15 +40,24 @@ function revealSector(selectedSector) {
 }
 
 function startGame(difficulty='test') {
+  gameRunning = true;
+  tickTimer()
   let difficulties = {'test':[3,2],'easy':[9,10],'regular':[15,50],'hard':[25,100],'extreme':[35,200]};
   minefield.replaceChildren();
   const sectors = difficulties[difficulty][0]**2
   const mines = difficulties[difficulty][1];
-  flagsLeft.textContent = `${mines} mines`;
+  flagsLeft.textContent = mines;
   console.log(`Difficulty set to: ${difficulty} with ${sectors} sections and ${mines} mines`);
   for (let i = 0; i < sectors; i++) {
     createSector();
   }
+}
+
+function tickTimer() {
+  if (!gameRunning) return;
+  const currentTime = parseInt(timelapse.textContent) || 0;
+  timelapse.textContent = currentTime + 1;
+  setTimeout(tickTimer, 1000);
 }
 
 function createSector() {
@@ -64,18 +79,11 @@ function flagSector(sector) {
 
 window.onload=()=>{
   minefield.onclick=(e)=>revealSector(e.target)
-  themeSelector.onclick=(e)=>{
-    const btn = e.target.closest('button');
-    if (!btn) return;
-    const selectedTheme = btn.dataset.theme;
-    document.documentElement.setAttribute('data-theme', selectedTheme);
-    themeSelector.querySelector('.active')?.classList.remove('active');
-    btn.classList.add('active');
-  }
+  themeSelector.onclick=(e)=>{changeTheme(e)}
   minefield.oncontextmenu=(e)=>{e.preventDefault();flagSector(e.target)}
   btnStartGame.onclick=()=>startGame();
-  btnToggleMinesLeft.onclick=()=>toggleElementVisibility('flagsLeft')
-  btnToggleTimelapse.onclick=()=>toggleElementVisibility('timelapse')
+  btnToggleMinesLeft.onclick=()=>toggleElementVisibility('.flags')
+  btnToggleTimelapse.onclick=()=>toggleElementVisibility('.time')
   btnToggleHUD.onclick=()=>toggleElementVisibility()
-  btnChangeTheme.onclick=changeTheme;
+  btnChangeTheme.onclick=()=>toggleElementVisibility('#themeSelector');
 }
