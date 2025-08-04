@@ -40,7 +40,8 @@ function revealSector(selectedSector) {
 }
 
 function startGame(difficulty='test') {
-  gameRunning = true;
+  if(gameRunning) return
+  gameRunning=true;
   tickTimer()
   let difficulties = {'test':[3,2],'easy':[9,10],'regular':[15,50],'hard':[25,100],'extreme':[35,200]};
   minefield.replaceChildren();
@@ -70,10 +71,14 @@ function createSector() {
 function flagSector(sector) {
   if (sector.classList.contains('flagged')) {
     sector.classList.remove('flagged');
-    sector.textContent = ''; // Remove flag
+    sector.textContent = '';
+    flagsLeft.textContent = parseInt(flagsLeft.textContent) + 1;
+
   } else {
     sector.classList.add('flagged');
-    sector.textContent = '⛿'; // Add flag symbol
+    sector.textContent = '⚑';
+    flagsLeft.textContent = parseInt(flagsLeft.textContent) - 1;
+
   }
 }
 

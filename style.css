@@ -39,6 +39,7 @@ body {
   user-select: none;
   transition: background-color .7s ease-out, color .7s ease-in-out;
 }
+button{all: unset;cursor: pointer;}
 header {
   display: flex;
   flex-flow: row wrap;
@@ -72,7 +73,6 @@ main{
   box-sizing: border-box;
   width: 50px;
   height: 50px;
-  border: 1px solid hsl(0, 0%, 74%);
   display: inline-block;
   position: relative;
   cursor: pointer;
@@ -89,6 +89,10 @@ main{
   cursor: default;
 }
 .sector:not(.revealed):hover{opacity: .5;}
+#changeTheme{
+  color: var(--field);
+  background-color: var(--text);
+}
 #themeSelector{
   display: flex;
   flex-wrap: wrap;
